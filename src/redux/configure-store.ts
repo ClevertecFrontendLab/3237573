@@ -1,8 +1,28 @@
-import { configureStore } from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
+import {createReduxHistoryContext} from "redux-first-history";
+import {createBrowserHistory} from "history";
+import {combineReducers} from "redux";
+import loaderReducer from './loaderSlice.ts';
+import modalsReducer from './modalsSlice.ts';
+import authReducer from './auth/authSlice.ts';
+
+const {
+    createReduxHistory,
+    routerMiddleware,
+    routerReducer
+} = createReduxHistoryContext({history: createBrowserHistory()});
 
 export const store = configureStore({
-    reducer: {},
+    reducer: combineReducers({
+        router: routerReducer,
+        loader: loaderReducer,
+        modals: modalsReducer,
+        auth: authReducer
+    }),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(routerMiddleware),
 });
+
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export const history = createReduxHistory(store);

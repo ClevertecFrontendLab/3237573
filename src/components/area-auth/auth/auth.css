@@ -1,0 +1,20 @@
+.tabs {
+    width: 100%;
+}
+.tabs .ant-tabs-nav-list {
+    width: 100%;
+}
+.tabs .ant-tabs-tab {
+    flex-basis: 50%;
+    justify-content: center;
+    font-family: var(--font-family);
+    font-size: 16px;
+    line-height: 130%;
+    color: var(--character-light-title-85);
+}
+.tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: var(--primary-light-6)!important;
+}
+.tabs .ant-tabs-ink-bar {
+    background: var(--primary-light-6);
+}

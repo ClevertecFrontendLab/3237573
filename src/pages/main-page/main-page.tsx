@@ -1,6 +1,7 @@
 import React from 'react';
+
 import './main-page.css';
-import {MainPart} from "@components/MainPart.tsx";
+import {MainPart} from "@components/main-area/MainPart.tsx";
 
 export const MainPage: React.FC = () => {
 

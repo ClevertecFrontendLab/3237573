@@ -99,6 +99,7 @@ a, a:hover, a:focus, a:visited {
     text-decoration: none;
 }
 #root {
+    position: relative;
     max-width: 1440px;
     min-height: 100vh;
     background-image: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, #fffdfd 100%), url(../public/img/background.jpg);
@@ -111,14 +112,17 @@ a, a:hover, a:focus, a:visited {
     text-align: left;
 }
 .sider {
+    display: block;
     position: relative;
-
     min-height: 100vh;
     flex-shrink: 0;
     flex-grow: 0;
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
     background: var(--character-light-primary-inverse);
     z-index: 5;
+}
+.wrapper {
+    min-height: 80vh;
 }
 .content {
     position: relative;
@@ -127,7 +131,7 @@ a, a:hover, a:focus, a:visited {
     flex-grow: 1;
 }
 .header {
-    height: 168px;  /* Почему не 168??? */
+    height: auto;
     background: var(--primary-light-1);
     padding: 16px 24px;
     line-height: 130%;
@@ -141,7 +145,6 @@ a, a:hover, a:focus, a:visited {
     justify-content: space-between;
 }
 .hello {
-    width: 1055px;
     font-weight: 700;
     font-size: 38px;
     line-height: 130%;
@@ -161,24 +164,17 @@ a, a:hover, a:focus, a:visited {
 .settings span {
     margin-right: 15px;
 }
-.settings-360 {
+.sider360 {
     display: none;
 }
-.sider-open {
-    width: 208px;
-    height: 100%;
-    display: none;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-.sider-switcher__close {
+.sider-switch {
     position: absolute;
     display: block;
     background: var(--character-light-primary-inverse);
-    background-image: url(../img/switcher-l.svg);
     width: 20px;
     height: 66px;
+    top: calc(50% - 33px);
+    right: -20px;
     box-shadow: 5px 2px 8px 0 rgba(0, 0, 0, 0.15);
     cursor: pointer;
     border-radius: 0 20px 20px 0;
@@ -215,51 +211,10 @@ a, a:hover, a:focus, a:visited {
 }
 .exit {
     border-top: 1px solid rgba(0, 0, 0, 0.25);
-    margin-left: 12px;
 }
 .exit img {
     margin-right: 10px;
-
-}
-
-.sider-collapsed {
-    display: flex;
-    width: 64px;
-    height: 100%;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-.sider-switcher__open {
-    position: absolute;
-    display: none;
-    background-image: url(../img/switcher-l.svg);
-    width: 20px;
-    height: 66px;
-    top: calc(50% - 33px);
-    right: -20px;
-    box-shadow: 5px 2px 8px 0 rgba(0, 0, 0, 0.15);
-    cursor: pointer;
-}
-.logo__collaps {
-    padding: 19px 17.45px 18px 18px;
-}
-.menu__collaps {
-    margin-top: 46px;
-}
-.menu-item__collaps {
-    padding: 13px 24px;
-    display: flex;
-    width: 100%;
-    border: 0;
-    background-color: transparent;
-    cursor: pointer;
-}
-.menu-item__collaps:not(:last-child) {
-    margin-bottom: 16px;
-}
-.exit__collaps {
-    border-top: 1px solid rgba(0, 0, 0, 0.25);
+    margin-left: 12px;
 }
 .main {
     padding: 24px;
@@ -281,14 +236,16 @@ a, a:hover, a:focus, a:visited {
     margin-bottom: 16px;
 }
 .cards-block {
-    display: flex;
     width: 752px;
+    display: flex;
     flex-direction: row;
+    gap: 16px;
     justify-content: space-between;
 }
 .card-item {
     border-radius: 0;
     text-align: center;
+    width: 240px;
 }
 .card-icon-text {
     margin: 0;
@@ -297,28 +254,21 @@ a, a:hover, a:focus, a:visited {
     color: var(--primary-light-6);
 }
 .footer {
-    position: absolute;
+    position: relative;
     width: 100%;
-    bottom: 0;
-    left: 0;
     display: flex;
     justify-content: space-between;
     padding: 24px;
     margin-bottom: 42px;
 }
 .feedback {
-    margin-bottom: -15px;
+    margin-top: 80px;
     color: var(--primary-light-6);
 }
 .application-card {
-    position: absolute;
-    bottom: 0;
-    right: 24px;
+
     box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.02);
     background: var(--character-light-primary-inverse);
-}
-.card-item {
-    width: 240px;
 }
 .card-top {
     padding: 12px 24px;
@@ -356,7 +306,6 @@ a, a:hover, a:focus, a:visited {
     white-space: wrap!important;
     text-align: center;
 }
-
 .ant-layout-sider-children {
     display: flex;
 
@@ -377,19 +326,15 @@ a, a:hover, a:focus, a:visited {
 
 @media (max-width: 834px) {
     .block {
-        width: 578px;
+        width: 100%;
     }
     .cards-block {
-        width: 578px;
+        width: 100%;
     }
     .card-item {
-        width: 182px;
-    }
-    .header {
-        height: 194px;
+        width: 100%;
     }
     .hello {
-        width: 473px;
         font-weight: 500;
         font-size: 24px;
         line-height: 130%;
@@ -399,5 +344,117 @@ a, a:hover, a:focus, a:visited {
     }
     .ant-card-head-title {
         text-align: left;
+    }
+}
+@media (max-width: 360px) {
+    .main {
+        padding: 15px;
+    }
+    .sider {
+        display: none;
+    }
+    .sider360 {
+        display: block;
+        min-height: 100vh;
+        z-index: 10;
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+        height: 640px;
+    }
+    .block {
+        width: 100%;
+    }
+    .cards-block {
+        display: block;
+        width: 100%;
+    }
+    .ant-space-item {
+        width: 100%;
+    }
+    .cards {
+        width: 100%;
+    }
+    .ant-card-head-title {
+        text-align: center;
+    }
+    .hello {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 130%;
+    }
+    .settings {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid var(--character-light-border);
+        border-radius: 100px;
+        padding: 4px 10px;
+        width: 32px;
+        height: 32px;
+        box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
+        background: var(--character-light-primary-inverse);
+    }
+    .settings img {
+        display: block;
+        margin-right: 0;
+    }
+    .set {
+        display: none;
+    }
+    .card-item {
+        margin-bottom: 8px;
+    }
+    .footer {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: column-reverse;
+        padding: 15px;
+        padding-top: 1px;
+    }
+    .feedback {
+        margin-top: 0;
+        margin-bottom: 0;
+        text-align: center;
+    }
+    .application-card {
+        position: unset;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .card-top {
+        text-align: center;
+    }
+    .sider-switch-mobile {
+        position: absolute;
+        display: block;
+        background: var(--character-light-primary-inverse);
+        width: 20px;
+        height: 66px;
+        top: 10px;
+        right: -20px;
+        box-shadow: 5px 2px 8px 0 rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        border-radius: 0 20px 20px 0;
+        z-index: 1000;
+    }
+    .menu-and-logo {
+        margin-top: 0;
+        text-align: left;
+        width: -webkit-fill-available
+    }
+    .logo {
+        padding: 16px 17px;
+        text-align: center;
+        height: auto;
+    }
+    .menu {
+        margin-top: 16px;
+    }
+    .ant-menu-item {
+        padding-left: 8px!important;
+        padding-right: 0!important;
+    }
+    .exit {
+        margin-top: 100px;
     }
 }

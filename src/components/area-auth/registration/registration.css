@@ -1,0 +1,14 @@
+.password-condition, .password-match {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    text-align: left;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 130%;
+    color: var(--character-light-secondary-45);
+
+}
