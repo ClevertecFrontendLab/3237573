@@ -1,0 +1,30 @@
+.mb110 {
+    margin-bottom: 38px;
+}
+.check-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.remember-me {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    color: rgba(0, 0, 0, 0.85);
+}
+.forget-password {
+    padding-right: 0;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    text-align: center;
+    color: var(--primary-light-6);
+}
+
+@media (max-width: 360px) {
+    .forget-password {
+        font-size: 14px;
+    }
+}

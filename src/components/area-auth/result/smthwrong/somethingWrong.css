@@ -1,0 +1,15 @@
+.modal-smth {
+    padding: 64px 32px 56px!important;
+}
+.form-button-smth {
+    width: 74px;
+    font-size: 14px;
+    line-height: 130%;
+}
+@media (max-width: 360px) {
+    .modal-smth {
+        width: 328px!important;
+        height: auto;
+        padding: 64px 32px 56px!important;
+    }
+}
